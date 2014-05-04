@@ -13,7 +13,7 @@ share:
 
 ### TL;DR
 
-Check out the example Github repo: 
+Check out the [example Github repo](https://github.com/lderache/ServiceStack-SelfHostDemo)
 
 ### Why this how to ?
 
@@ -44,7 +44,7 @@ Create a console application and install ServiceStack from NuGet.
 
 {% highlight c# %}
 
-    // Basic car class
+ // Basic car class
     public class Car
     {
         public string Plate { get; set; }
@@ -62,9 +62,11 @@ Create a console application and install ServiceStack from NuGet.
         public List<Car> Cars { get; set; }
     }
 
+    [Authenticate]
+    [DefaultView("Cars")]
     public class CarService : Service
     {
-        List<Car> Cars = new List<Car>
+        List<Car> CarsResult = new List<Car>
         {
             new Car { Plate = "FG98745" },
             new Car { Plate = "VN236PL" }
@@ -72,9 +74,11 @@ Create a console application and install ServiceStack from NuGet.
 
         public object Get(CarRequest request)
         {
-            return Cars;
+            return new CarResponse { Cars = CarsResult };
         }
     }
+
+
 {% endhighlight %}
 
 
