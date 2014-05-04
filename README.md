@@ -9,5 +9,5 @@ The following directories and their contents are Copyright Corey Donohoe. You ma
 * _posts/
 * images/
 
-All other directories and files are MIT Licensed.
+All other directories and files are licensed per [Minimal Mistakes](http://mmistakes.github.io/minimal-mistakes) choice.
 
