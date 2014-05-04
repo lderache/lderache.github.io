@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ServiceStack how to: SelfHost + Razor + WebForm"
+title: "ServiceStack how to: SelfHost + Razor + WebForm Auth"
 modified: 2014-05-04 09:01:00 -0400
 tags: [ServiceStack]
 image:
