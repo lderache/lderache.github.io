@@ -9,7 +9,7 @@ comments: true
 
 I am a software engineer currently living in China and developing Intelligent Transportation System (ITS) solutions. I love mixing software, hardware and design.
 
-##### Areas of expertise:
+##### Projects and expertise:
 
 * Parking management software
 * Parking Guidance System (PGS)
