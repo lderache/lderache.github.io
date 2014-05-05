@@ -44,40 +44,39 @@ Create a console application and install ServiceStack from NuGet.
 
 {% highlight c# %}
 
- // Basic car class
-    public class Car
-    {
-        public string Plate { get; set; }
-    }
+// Basic car class
+public class Car
+{
+  public string Plate { get; set; }
+}
 
-    // Request DTO
-    [Route("/Cars", "GET")]
-    public class CarRequest
-    {
-    }
+// Request DTO
+[Route("/Cars", "GET")]
+public class CarRequest
+{
+}
 
-    // Response DTO
-    public class CarResponse
-    {
-        public List<Car> Cars { get; set; }
-    }
+// Response DTO
+public class CarResponse
+{
+  public List<Car> Cars { get; set; }
+}
 
-    [Authenticate]
-    [DefaultView("Cars")]
-    public class CarService : Service
-    {
-        List<Car> CarsResult = new List<Car>
-        {
-            new Car { Plate = "FG98745" },
-            new Car { Plate = "VN236PL" }
-        };
+[Authenticate]
+[DefaultView("Cars")]
+public class CarService : Service
+{
+  List<Car> CarsResult = new List<Car>
+  {
+    new Car { Plate = "FG98745" },
+    new Car { Plate = "VN236PL" }
+  };
 
-        public object Get(CarRequest request)
-        {
-            return new CarResponse { Cars = CarsResult };
-        }
-    }
-
+  public object Get(CarRequest request)
+  {
+    return new CarResponse { Cars = CarsResult };
+  }
+}
 
 {% endhighlight %}
 
@@ -86,36 +85,34 @@ Create a console application and install ServiceStack from NuGet.
 
 {% highlight c# %}
 
- class Program
-    {
-        //Define the Web Services AppHost
-        public class AppHost : AppHostHttpListenerBase
-        {
-            public AppHost()
-                : base("HttpListener SelfHost Demo", typeof(CarService).Assembly) { }
+class Program
+{
+  //Define the Web Services AppHost
+  public class AppHost : AppHostHttpListenerBase
+  {
+    public AppHost(): base("HttpListener SelfHost Demo", typeof(CarService).Assembly) { }
 
-            public override void Configure(Funq.Container container)
-            {
-            }
-        }
+  public override void Configure(Funq.Container container)
+  {
+  }	
+}
 
-        static void Main(string[] args)
-        {
-            LogManager.LogFactory = new ConsoleLogFactory();
+static void Main(string[] args)
+{
+  LogManager.LogFactory = new ConsoleLogFactory();
 
-            var listeningOn = args.Length == 0 ? "http://*:8090/" : args[0];
+  var listeningOn = args.Length == 0 ? "http://*:8090/" : args[0];
 
-            var appHost = new AppHost();
+  var appHost = new AppHost();
 
-            appHost.Init();
-            appHost.Start(listeningOn);
+  appHost.Init();
+  appHost.Start(listeningOn);
 
-            Console.WriteLine("AppHost Created at {0}, listening on {1}",
-                DateTime.Now, listeningOn);
+  Console.WriteLine("AppHost Created at {0}, listening on {1}",
+  DateTime.Now, listeningOn);
 
-            Console.ReadKey();
-        }
-    }
+  Console.ReadKey();
+}
 
 {% endhighlight %}
 
@@ -261,17 +258,17 @@ Update your AppHost Configure method as follow:
 
 {% highlight C# %}
 
- public override void Configure(Funq.Container container)
-            {
-                Plugins.Add(new RazorFormat());
+public override void Configure(Funq.Container container)
+{
+  Plugins.Add(new RazorFormat());
 
-                Plugins.Add(new AuthFeature(() => new AuthUserSession(),
-                  new IAuthProvider[] { 
-                    new CredentialsAuthProvider(), //HTML Form post of UserName/Password credentials
-                  }));
+  Plugins.Add(new AuthFeature(() => new AuthUserSession(),
+    new IAuthProvider[] { 
+    new CredentialsAuthProvider(), //HTML Form post of UserName/Password credentials
+  }));
 
-                Plugins.Add(new SessionFeature());
-            }
+  Plugins.Add(new SessionFeature());
+}
 
 {% endhighlight %}
 
@@ -282,14 +279,14 @@ Let's create an InMemory Repo with a user:
 {% highlight C# %}
 
 var userRep = new InMemoryAuthRepository();
-                container.Register<IUserAuthRepository>(userRep);
+container.Register<IUserAuthRepository>(userRep);
 
-                UserAuth userDemo = new UserAuth
-                {
-                    UserName = "demo"
-                };
+UserAuth userDemo = new UserAuth
+{
+  UserName = "demo"
+};
 
-                userRep.CreateUserAuth(userDemo, "demo");
+userRep.CreateUserAuth(userDemo, "demo");
 
 {% endhighlight %}
 
@@ -317,10 +314,10 @@ Just decorate the service with Authenticate attribute and you are done
 
 {% highlight html %}
 [Authenticate]
-    public class CarService : Service
-    {
-	...
-    }
+public class CarService : Service
+{
+  ...
+}
 
 {% endhighlight %}
 
