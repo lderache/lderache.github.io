@@ -9,6 +9,7 @@ The following directories and their contents are Copyright Corey Donohoe. You ma
 * _posts/
 * images/
 
+
 All other directories and files are free to be resused as stated in [Michael Rose repo] (https://github.com/mmistakes/minimal-mistakes)
 
 
